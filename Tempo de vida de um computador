@@ -1,0 +1,25 @@
+# dados
+n <- 20  # número de observacoes
+sum_x <- 126.29  # soma dos valores dos dados
+
+# Intervalo para lambda
+lambda_values <- seq(0.05, 1.0, length.out = 500)
+
+# verossimilhanca
+log_likelihood <- n * log(lambda_values) - lambda_values * sum_x
+
+# mle
+lambda_hat <- 1 / (sum_x / n)
+
+# grafico
+plot(lambda_values, log_likelihood, type = "l", col = "blue", 
+     lwd = 2, xlab = expression(lambda), ylab = expression(lambda),
+     main = "Função Log-Verossimilhança")
+
+
+abline(v = lambda_hat, col = "red", lty = 2)
+
+
+text(lambda_hat + 0.05, max(log_likelihood), 
+     labels = paste("lambda =", round(lambda_hat, 4)), 
+     col = "red", cex = 1.2)
